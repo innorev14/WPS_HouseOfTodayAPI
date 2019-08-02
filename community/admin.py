@@ -35,11 +35,16 @@ class HousewarmingCommentAdmin(admin.ModelAdmin):
     list_display = ['id','housewarming','author','author_profile_image','text','created']
 
 
+class HotStoryNumberAdmin(admin.ModelAdmin):
+    fields = ['product_rnd_number']
+    list_display = ['id','product_rnd_number','updated']
+
+
 admin.site.register(Photo, PhotoAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(PhotoComment, PhotoCommentAdmin)
 admin.site.register(Housewarming, HousewarmingAdmin)
 admin.site.register(DetailContent, DetailContentAdmin)
 admin.site.register(HousewarmingComment, HousewarmingCommentAdmin)
-
+admin.site.register(HotStoryNumber, HotStoryNumberAdmin)
 

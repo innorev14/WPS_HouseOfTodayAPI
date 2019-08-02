@@ -9,10 +9,12 @@ class PhotoCommentSerializer(serializers.ModelSerializer):
         model = PhotoComment
         fields = '__all__'
 
+
 class PhotoCommentSimpleSerializer(serializers.ModelSerializer):
     class Meta:
         model = PhotoComment
         fields = ['author_profile_image', 'author', 'text']
+
 
 class PhotoSerializer(serializers.ModelSerializer):
     comments = SerializerMethodField()
@@ -33,3 +35,37 @@ class PhotoDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
         fields = '__all__'
+
+
+# 집들이 탭 메인 serializer
+class HousewarmingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Housewarming
+        fields = ['id','cover_image','title','author_profile','author','scrap_count','hit_count']
+
+
+# 집들이 탭 게시글 내 여러 사진&글 serializer
+class HousewarmingDetailContentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DetailContent
+        fields = ['id','title','image','text']
+
+
+# 집들이 탭 게시글 내 여러 댓글 serializer
+class HousewarmingCommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HousewarmingComment
+        fields = ['id','author','author_profile_image','text','created']
+
+
+# 집들이 탭 각각의 게시글 정보 serializer (HousewarmingDetailContentSerializer + HousewarmingCommentSerializer)
+class HousewarmingDetailSerializer(serializers.ModelSerializer):
+    housewarming_detail_content = HousewarmingDetailContentSerializer(source='detail_contents', many=True)
+    housewarming_comments = HousewarmingCommentSerializer(source='comments', many=True)
+
+    class Meta:
+        model = Housewarming
+        fields = '__all__'
+
+
+

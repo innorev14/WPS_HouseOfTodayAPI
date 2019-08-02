@@ -126,3 +126,18 @@ class HousewarmingComment(models.Model):
 
     class Meta:
         ordering = ['id']
+
+
+class HotStoryNumber(models.Model):
+    # 랜덤 숫자를 위한 필드
+    product_rnd_number = models.PositiveIntegerField(default=0)
+    # 날짜 비교를 위한 필드
+    updated = models.DateField(auto_now=True)
+
+    def __str__(self):
+        # 객체의 이름 - 랜덤 숫자
+        return str(self.product_rnd_number)
+
+    class Meta:
+        ordering = ['id']
+
