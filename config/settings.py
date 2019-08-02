@@ -217,9 +217,13 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 
+# python manage.py crontab add 를 통해 실행중인 경우,
+# settings.py의 CRONJOBS를 변경하게 되면 무조건 python manage.py crontab remove 후
+# 다시 python manage.py crontab add를 해줘야 한다!!!! 안그러면 에러 발생한다!!
 CRONJOBS = [
     ('0 0 * * *', 'products.cron.my_scheduled_job')
 ]
+
 
 # 환경 변수 추가 : https://cafe.naver.com/plan99/852
 # https://brownbears.tistory.com/15
