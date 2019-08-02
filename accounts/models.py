@@ -19,7 +19,7 @@ class User(AbstractUser):
 
     # House of today user info
     # 이메일
-    email = models.EmailField('이메일', unique=True, null=True)
+    email = models.EmailField('이메일', unique=True)
     # 성별(1 = 남자, 2 = 여자)
     gender = models.PositiveIntegerField(blank=True, null=True)
     # 생일
