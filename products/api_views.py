@@ -710,11 +710,11 @@ class OrderFromCartCreateAPIView(APIView):
         if serializer.is_valid():
             instance = serializer.save(user=request.user)
             # pk_list를 받아서 split을 통해 숫자 리스트를 받음
-            pk_list = request.POST['pk_list'].replace('"', '').split(',')
+            pk_list = request.data['pk_list'].replace('"', '').split(',')
 
             for pk in pk_list:
                 # orderitem에서 해당 pk 값을 가진 orderitem을 얻음
-                orderitem = OrderItem.objects.get(pk=pk)
+                orderitem = OrderItem.objects.get(pk=int(pk))
                 # instance.id를 통해 order의 id를 얻고, orderitem의 order에 넣음(order와 연결)
                 orderitem.order_id = instance.id
                 # None을 통해 user와의 관계를 끊음
@@ -793,17 +793,17 @@ class OrderDirectCreateAPIView(APIView):
         if serializer.is_valid():
             instance = serializer.save(user=request.user)
             # pd_id : 상품의 고유 id
-            pd_id = request.POST['pd_id'].replace('"', '')
+            pd_id = request.data['pd_id'].replace('"', '')
             # po_list : 상품 옵션의 고유 id를 split을 통해 숫자 리스트로 받음
-            po_list = request.POST['po_list'].replace('"', '').split(',')
+            po_list = request.data['po_list'].replace('"', '').split(',')
             # qty_list : 상품 옵션 수량을 split을 통해 숫자 리스트로 받음
-            qty_list = request.POST['qty_list'].replace('"', '').split(',')
+            qty_list = request.data['qty_list'].replace('"', '').split(',')
 
             for idx in range(len(po_list)):
                 # 장바구니에 들어가는 것이 아니기 때문에 orderitem을 직접 생성
                 orderitem = OrderItem()
                 # 상품 id를 넣음
-                orderitem.product_id = pd_id
+                orderitem.product_id = int(pd_id)
                 # 상품 옵션 id를 넣음
                 orderitem.product_option_id = int(po_list[idx])
                 # instance에서 order의 id를 얻어서 넣음(order와 연결)
