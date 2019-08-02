@@ -116,3 +116,4 @@ FinalProject - House of Today API
     - fix: Update products // OrderItemUpdateSerializer - Add the total_price
     - feat: Update community // serializers.py-PhotoDetailSerializer, HousewarmingSerializer, HousewarmingDetailContentSerializer, HousewarmingCommentSerializer, HousewarmingDetailSerializer, community // api_views.py-HousewarmingAPIView, HousewarmingDetailAPIView, CommunityHomeAPIView, community // urls.py-path('housewarming/, housewarming/<int:pk>/, home/' Added API to community side.(including community home) && Update community // models.py-HotStoryNumber, admin.py-HotStoryNumberAdmin + products-cron.py-my_scheduled_job --> Community Home Page is also added to the cronjobs action.
     - fix: Update accounts // delete null attribution of email field
+    - fix: Update products // OrderFromCartCreateAPIView,OrderDirectCreateAPIView - Add the replace()
