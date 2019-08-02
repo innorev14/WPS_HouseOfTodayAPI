@@ -169,6 +169,13 @@ class OrderItemUpdateSerializer(serializers.ModelSerializer):
         model = OrderItem
         fields = ['quantity']
 
+    def to_representation(self, instance):
+        serializer_data = super().to_representation(instance)
+        quantity = serializer_data['quantity']
+        price = ProductOption.objects.get(name=instance.product_option).price
+        total_price = quantity * price
+        serializer_data['total_price'] = total_price
+        return serializer_data
 
 # Order Model Serializer
 class OrderSerializer(serializers.ModelSerializer):
