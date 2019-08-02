@@ -674,6 +674,7 @@ class OrderFromCartCreateAPIView(APIView):
 
         다음과 같은 내용으로 요청할 수 있습니다.
         장바구니에 담긴 아이템의 고유 ID를 이용해서 선택해서 보낼 수 있습니다.
+        큰따옴표(")를 사용해서 보내주세요.
         'pk_list'는 장바구니 아이템의 고유 ID를 나타내며, '(콤마)'로 구분해서 보내면 됩니다.
         *****콤마 사이에 띄어쓰기 하지 말아주세요!
         *****한 가지만 보낼 때는 콤마를 붙이지 말아주세요!
@@ -709,7 +710,7 @@ class OrderFromCartCreateAPIView(APIView):
         if serializer.is_valid():
             instance = serializer.save(user=request.user)
             # pk_list를 받아서 split을 통해 숫자 리스트를 받음
-            pk_list = request.POST['pk_list'].split(',')
+            pk_list = request.POST['pk_list'].replace('"', '').split(',')
 
             for pk in pk_list:
                 # orderitem에서 해당 pk 값을 가진 orderitem을 얻음
@@ -743,6 +744,7 @@ class OrderDirectCreateAPIView(APIView):
         'po_list'는 직접 구매하는 상품 옵션의 고유 ID입니다.
         'qty_list'는 직접 구매하는 상품 옵션의 수량입니다.
 
+        다음 항목을 큰따옴표(")를 사용해서 보내주세요.
         'pd_id'의 경우 직접 구매이기 때문에 상품은 하나이므로 값을 하나만 보내주세요.
         'po_list'의 경우 옵션을 여러가지 선택할 수 있기 때문에 ',(콤마)'로 구분해서 보내면 됩니다.
         'qty_list'의 경우 선택한 옵션의 순서대로 ',(콤마)'로 구분해서 보내면 됩니다.
@@ -791,11 +793,11 @@ class OrderDirectCreateAPIView(APIView):
         if serializer.is_valid():
             instance = serializer.save(user=request.user)
             # pd_id : 상품의 고유 id
-            pd_id = request.POST['pd_id']
+            pd_id = request.POST['pd_id'].replace('"', '')
             # po_list : 상품 옵션의 고유 id를 split을 통해 숫자 리스트로 받음
-            po_list = request.POST['po_list'].split(',')
+            po_list = request.POST['po_list'].replace('"', '').split(',')
             # qty_list : 상품 옵션 수량을 split을 통해 숫자 리스트로 받음
-            qty_list = request.POST['qty_list'].split(',')
+            qty_list = request.POST['qty_list'].replace('"', '').split(',')
 
             for idx in range(len(po_list)):
                 # 장바구니에 들어가는 것이 아니기 때문에 orderitem을 직접 생성
