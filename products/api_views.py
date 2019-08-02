@@ -610,6 +610,7 @@ class OrderItemChangeAPIView(APIView):
 
         # 내용
             - quantity : 변경된 해당 아이템 상품의 수량
+            - total_price : 상품의 가격 x 수량
     """
 
     def get_object(self, pk):

@@ -113,4 +113,4 @@ FinalProject - House of Today API
 
 - 19.08.02
     - fix: Update products // OrderItem and Order serializers, api views - Add the brand_name
-    
+    - fix: Update products // OrderItemUpdateSerializer - Add the total_price
