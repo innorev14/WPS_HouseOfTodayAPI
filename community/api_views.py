@@ -105,6 +105,7 @@ class HousewarmingAPIView(generics.ListAPIView):
 class HousewarmingDetailAPIView(generics.RetrieveAPIView):
     """
         커뮤니티/집들이 리스트에서 특정 id를 가지는 데이터를 불러옵니다.
+
         ---
         # 내용
             - id : 해당 게시글 고유의 ID
@@ -150,53 +151,25 @@ class CommunityHomeAPIView(generics.ListAPIView):
 
         ---
         # 내용
-        - today_entry : 캐러셸 대표 게시글 내용 (랜덤으로 나오는 1개의 내용입니다.)
-            - id : 해당 게시글 고유의 ID
-            - cover_image : 대표 이미지
-            - title : (해당 게시글) 제목
-            - author_profile : 작성자 프로필 사진
-            - author : 작성자
-            - scrap_count : 스크랩 수
-            - hit_count : 조회 수
+            - today_entry : 캐러셸 대표 게시글 내용 (랜덤으로 나오는 1개의 내용입니다.)
+                - id : 해당 게시글 고유의 ID
+                - cover_image : 대표 이미지
+                - title : (해당 게시글) 제목
+                - author_profile : 작성자 프로필 사진
+                - author : 작성자
+                - scrap_count : 스크랩 수
+                - hit_count : 조회 수
 
-        - today_story : 오늘의 스토리 (3개)
-            - id : 해당 게시글 고유의 ID
-            - cover_image : 대표 이미지
-            - title : (해당 게시글) 제목
-            - author_profile : 작성자 프로필 사진
-            - author : 작성자
-            - scrap_count : 스크랩 수
-            - hit_count : 조회 수
+            - today_story : 오늘의 스토리 (3개)
+                - id : 해당 게시글 고유의 ID
+                - cover_image : 대표 이미지
+                - title : (해당 게시글) 제목
+                - author_profile : 작성자 프로필 사진
+                - author : 작성자
+                - scrap_count : 스크랩 수
+                - hit_count : 조회 수
 
-        - todaydeal : 오늘의 딜(4개)
-            - id : 상품의 고유 ID
-            - brand_name : 상품의 브랜드 이름
-            - name : 상품 이름
-            - discount_rate : 할인율
-            - price : 상품 가격
-            - review_count : 리뷰 수
-            - star_avg : 리뷰 평점
-            - thumnail_images : 상품 썸네일 이미지
-                - id : 썸네일 이미지의 고유 ID
-                - image : 썸네일 이미지 URL
-            - product : 썸네일 이미지가 속한 상품의 고유 ID
-
-        - today_picture : 커뮤니티/사진 리스트 목록을 불러옵니다(좋아요 순, 8개).
-            - id : 사진 고유의 ID
-            - author : 작성자
-            - image : 사진 이미지 URL
-            - hit_count : 조회 수
-            - like_count : '좋아요' 수
-            - scrap_count : 스크랩 수
-            - comment_count : 댓글 수
-            - text : 사진 내용
-            - comments : 사진에 포함된 첫번째 댓글
-                - author_profile_image : 댓글 작성자의 프로필 이미지 URL
-                - author : 댓글 작성자
-                - text : 댓글 내용
-
-        - best100_category_list : 각 카테고리별 인기상품 목록을 불러옵니다(각 카테고리별 3개).
-            - total : 전체 카테고리 중 BEST 정보
+            - todaydeal : 오늘의 딜(4개)
                 - id : 상품의 고유 ID
                 - brand_name : 상품의 브랜드 이름
                 - name : 상품 이름
@@ -209,82 +182,102 @@ class CommunityHomeAPIView(generics.ListAPIView):
                     - image : 썸네일 이미지 URL
                 - product : 썸네일 이미지가 속한 상품의 고유 ID
 
-            - light_homedeco : 조명&홈데코 BEST 정보
-                - id : 상품의 고유 ID
-                - brand_name : 상품의 브랜드 이름
-                - name : 상품 이름
-                - discount_rate : 할인율
-                - price : 상품 가격
-                - thumnail_images : 상품 썸네일 이미지
-                    - id : 썸네일 이미지의 고유 ID
-                    - image : 썸네일 이미지 URL
-                - product : 썸네일 이미지가 속한 상품의 고유 ID
+            - today_picture : 커뮤니티/사진 리스트 목록을 불러옵니다(좋아요 순, 8개).
+                - id : 사진 고유의 ID
+                - author : 작성자
+                - image : 작성자 프로필 사진
+                - author_profile_image : 사진 이미지 URL
 
-            - daily_supplies : 생활용품 BEST 정보
-                - id : 상품의 고유 ID
-                - brand_name : 상품의 브랜드 이름
-                - name : 상품 이름
-                - discount_rate : 할인율
-                - price : 상품 가격
-                - thumnail_images : 상품 썸네일 이미지
-                    - id : 썸네일 이미지의 고유 ID
-                    - image : 썸네일 이미지 URL
-                - product : 썸네일 이미지가 속한 상품의 고유 ID
+            - best100_category_list : 각 카테고리별 인기상품 목록을 불러옵니다(각 카테고리별 3개).
+                - total : 전체 카테고리 중 BEST 정보
+                    - id : 상품의 고유 ID
+                    - brand_name : 상품의 브랜드 이름
+                    - name : 상품 이름
+                    - discount_rate : 할인율
+                    - price : 상품 가격
+                    - review_count : 리뷰 수
+                    - star_avg : 리뷰 평점
+                    - thumnail_images : 상품 썸네일 이미지
+                        - id : 썸네일 이미지의 고유 ID
+                        - image : 썸네일 이미지 URL
+                    - product : 썸네일 이미지가 속한 상품의 고유 ID
 
-            - fabric : 패브릭 BEST 정보
-                - id : 상품의 고유 ID
-                - brand_name : 상품의 브랜드 이름
-                - name : 상품 이름
-                - discount_rate : 할인율
-                - price : 상품 가격
-                - thumnail_images : 상품 썸네일 이미지
-                    - id : 썸네일 이미지의 고유 ID
-                    - image : 썸네일 이미지 URL
-                - product : 썸네일 이미지가 속한 상품의 고유 ID
+                - light_homedeco : 조명&홈데코 BEST 정보
+                    - id : 상품의 고유 ID
+                    - brand_name : 상품의 브랜드 이름
+                    - name : 상품 이름
+                    - discount_rate : 할인율
+                    - price : 상품 가격
+                    - thumnail_images : 상품 썸네일 이미지
+                        - id : 썸네일 이미지의 고유 ID
+                        - image : 썸네일 이미지 URL
+                    - product : 썸네일 이미지가 속한 상품의 고유 ID
 
-            - kitchenware : 주방용품 BEST 정보
-                - id : 상품의 고유 ID
-                - brand_name : 상품의 브랜드 이름
-                - name : 상품 이름
-                - discount_rate : 할인율
-                - price : 상품 가격
-                - thumnail_images : 상품 썸네일 이미지
-                    - id : 썸네일 이미지의 고유 ID
-                    - image : 썸네일 이미지 URL
-                - product : 썸네일 이미지가 속한 상품의 고유 ID
+                - daily_supplies : 생활용품 BEST 정보
+                    - id : 상품의 고유 ID
+                    - brand_name : 상품의 브랜드 이름
+                    - name : 상품 이름
+                    - discount_rate : 할인율
+                    - price : 상품 가격
+                    - thumnail_images : 상품 썸네일 이미지
+                        - id : 썸네일 이미지의 고유 ID
+                        - image : 썸네일 이미지 URL
+                    - product : 썸네일 이미지가 속한 상품의 고유 ID
 
-            - home_appliances : 가전제품 BEST 정보(상품 10개)
-                - id : 상품의 고유 ID
-                - brand_name : 상품의 브랜드 이름
-                - name : 상품 이름
-                - discount_rate : 할인율
-                - price : 상품 가격
-                - thumnail_images : 상품 썸네일 이미지
-                    - id : 썸네일 이미지의 고유 ID
-                    - image : 썸네일 이미지 URL
-                - product : 썸네일 이미지가 속한 상품의 고유 ID
+                - fabric : 패브릭 BEST 정보
+                    - id : 상품의 고유 ID
+                    - brand_name : 상품의 브랜드 이름
+                    - name : 상품 이름
+                    - discount_rate : 할인율
+                    - price : 상품 가격
+                    - thumnail_images : 상품 썸네일 이미지
+                        - id : 썸네일 이미지의 고유 ID
+                        - image : 썸네일 이미지 URL
+                    - product : 썸네일 이미지가 속한 상품의 고유 ID
 
-            - companion_animal : 반려동물 BEST 정보
-                - id : 상품의 고유 ID
-                - brand_name : 상품의 브랜드 이름
-                - name : 상품 이름
-                - discount_rate : 할인율
-                - price : 상품 가격
-                - thumnail_images : 상품 썸네일 이미지
-                    - id : 썸네일 이미지의 고유 ID
-                    - image : 썸네일 이미지 URL
-                - product : 썸네일 이미지가 속한 상품의 고유 ID
+                - kitchenware : 주방용품 BEST 정보
+                    - id : 상품의 고유 ID
+                    - brand_name : 상품의 브랜드 이름
+                    - name : 상품 이름
+                    - discount_rate : 할인율
+                    - price : 상품 가격
+                    - thumnail_images : 상품 썸네일 이미지
+                        - id : 썸네일 이미지의 고유 ID
+                        - image : 썸네일 이미지 URL
+                    - product : 썸네일 이미지가 속한 상품의 고유 ID
 
-            - furniture : 가구 BEST 정보
-                - id : 상품의 고유 ID
-                - brand_name : 상품의 브랜드 이름
-                - name : 상품 이름
-                - discount_rate : 할인율
-                - price : 상품 가격
-                - thumnail_images : 상품 썸네일 이미지
-                    - id : 썸네일 이미지의 고유 ID
-                    - image : 썸네일 이미지 URL
-                - product : 썸네일 이미지가 속한 상품의 고유 ID
+                - home_appliances : 가전제품 BEST 정보(상품 10개)
+                    - id : 상품의 고유 ID
+                    - brand_name : 상품의 브랜드 이름
+                    - name : 상품 이름
+                    - discount_rate : 할인율
+                    - price : 상품 가격
+                    - thumnail_images : 상품 썸네일 이미지
+                        - id : 썸네일 이미지의 고유 ID
+                        - image : 썸네일 이미지 URL
+                    - product : 썸네일 이미지가 속한 상품의 고유 ID
+
+                - companion_animal : 반려동물 BEST 정보
+                    - id : 상품의 고유 ID
+                    - brand_name : 상품의 브랜드 이름
+                    - name : 상품 이름
+                    - discount_rate : 할인율
+                    - price : 상품 가격
+                    - thumnail_images : 상품 썸네일 이미지
+                        - id : 썸네일 이미지의 고유 ID
+                        - image : 썸네일 이미지 URL
+                    - product : 썸네일 이미지가 속한 상품의 고유 ID
+
+                - furniture : 가구 BEST 정보
+                    - id : 상품의 고유 ID
+                    - brand_name : 상품의 브랜드 이름
+                    - name : 상품 이름
+                    - discount_rate : 할인율
+                    - price : 상품 가격
+                    - thumnail_images : 상품 썸네일 이미지
+                        - id : 썸네일 이미지의 고유 ID
+                        - image : 썸네일 이미지 URL
+                    - product : 썸네일 이미지가 속한 상품의 고유 ID
     """
 
 
@@ -292,7 +285,7 @@ class CommunityHomeAPIView(generics.ListAPIView):
     # queryset = Housewarming.objects.all()
     serializer_class_story = HousewarmingSerializer
     serializer_class_product = ProductSerializer
-    serializer_class_picture = PhotoSerializer
+    serializer_class_picture = TodayPictureSerializer
     permission_classes = (AllowAny,)
 
     # 캐러셸 대표 이미지 및 내용
@@ -373,7 +366,8 @@ class CommunityHomeAPIView(generics.ListAPIView):
         home_appliances = self.serializer_class_product(self.get_queryset_category_in_product5(), many=True)
         companion_animal = self.serializer_class_product(self.get_queryset_category_in_product10(), many=True)
         furniture = self.serializer_class_product(self.get_queryset_category_in_product2(), many=True)
-
+        # 작성자 프로필 사진 넘어오게 해야함.
+        # 코멘트에 포함된 프로필 사진은 댓글 작성자 프로필 사진임..
         return Response({
             'today_entry': today_entry.data,
             'today_story': today_story.data,

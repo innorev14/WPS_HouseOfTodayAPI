@@ -118,3 +118,6 @@ FinalProject - House of Today API
     - fix: Update accounts // delete null attribution of email field
     - fix: Update products // OrderFromCartCreateAPIView,OrderDirectCreateAPIView - Add the replace()
     - fix; Update products // OrderFromCartCreateAPIView,OrderDirectCreateAPIView - request.POST -> request.data
+    - fix: change the Markdown(url - 'swagger/v1'), change the community-api_views.py-CommunityHomeAPIView-'today_picture' API data. (url - community/home/) + Create the community-serializers.py-TodayPictureSerializer class.
+    - fix: test the django-crontab, added a method of use as an comment(settings.py-CRONJOBS)
+

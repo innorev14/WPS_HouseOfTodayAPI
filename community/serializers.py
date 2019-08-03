@@ -37,6 +37,14 @@ class PhotoDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+# 커뮤니티-홈의 오늘의 사진 부분에 대한 Serializer임.
+class TodayPictureSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Photo
+        fields = ['id', 'author', 'image', 'author_profile_image']
+
+
 # 집들이 탭 메인 serializer
 class HousewarmingSerializer(serializers.ModelSerializer):
     class Meta:
