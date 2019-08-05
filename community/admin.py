@@ -18,11 +18,11 @@ class PhotoCommentAdmin(admin.ModelAdmin):
 
 class HousewarmingAdmin(admin.ModelAdmin):
     fields = ['title','created','author','author_profile','like_count','scrap_count','hit_count','cover_image',
-              'structure','floor_space','style','work','area','period','family','detail_part',
+              'structure','floor_space','style','work','area','period','budget','family','detail_part',
               'location','comment_count']
     list_display = ['id','title','created','author','author_profile','like_count','scrap_count',
                     'hit_count','cover_image','structure','floor_space','style','work','area','period',
-                    'family','detail_part','location','comment_count']
+                    'budget','family','detail_part','location','comment_count']
 
 
 class DetailContentAdmin(admin.ModelAdmin):
