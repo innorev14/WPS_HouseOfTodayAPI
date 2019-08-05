@@ -20,6 +20,7 @@ class PhotoListAPIView(generics.ListAPIView):
         # 내용
             - id : 사진 고유의 ID
             - author : 작성자
+            - author_profile_image : 사진 게시글 작성자의 프로필 이미지 URL
             - image : 사진 이미지 URL
             - hit_count : 조회 수
             - like_count : '좋아요' 수
