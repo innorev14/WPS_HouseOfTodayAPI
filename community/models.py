@@ -89,6 +89,7 @@ class Housewarming(models.Model):
     work = models.CharField(max_length=50)
     area = models.CharField(max_length=50)
     period = models.CharField(max_length=50)
+    budget = models.CharField(max_length=100, default='-')
     family = models.CharField(max_length=50)
     detail_part = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
