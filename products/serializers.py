@@ -115,6 +115,7 @@ class PDQnACreateSerializer(serializers.ModelSerializer):
 class OrderItemResponseSerializer(serializers.ModelSerializer):
     brand_name = serializers.CharField(source='product.brand_name')
     product = serializers.CharField(source='product.name')
+    product_id = serializers.CharField(source='product.id')
     product_option = serializers.CharField(source='product_option.name')
 
     class Meta:
@@ -137,6 +138,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
     user = serializers.CharField(source='user.username')
     brand_name = serializers.CharField(source='product.brand_name')
     product = serializers.CharField(source='product.name')
+    product_id = serializers.CharField(source='product.id')
     deliver_fee = serializers.CharField(source='product.deliver_fee')
     deliver = serializers.CharField(source='product.deliver')
     product_option = serializers.CharField(source='product_option.name')
