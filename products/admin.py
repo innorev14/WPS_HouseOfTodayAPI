@@ -68,7 +68,7 @@ class OrderAdmin(admin.ModelAdmin):
 
 # CronTab 로그 기록 Admin
 class CronLogAdmin(admin.ModelAdmin):
-    list_display = ['id', 'cron_date']
+    list_display = ['id', 'cronjob_comment', 'cron_date']
 
 
 admin.site.register(Category, CategoryAdmin)

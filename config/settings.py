@@ -221,7 +221,8 @@ CORS_ALLOW_CREDENTIALS = True
 # settings.py의 CRONJOBS를 변경하게 되면 무조건 python manage.py crontab remove 후
 # 다시 python manage.py crontab add를 해줘야 한다!!!! 안그러면 에러 발생한다!!
 CRONJOBS = [
-    ('0 0 * * *', 'products.cron.my_scheduled_job')
+    ('0 0 * * *', 'products.cron.products_todaydeal'),
+    ('0 0 * * *', 'community.cron.community_todaystory'),
 ]
 
 

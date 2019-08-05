@@ -221,9 +221,12 @@ class Order(models.Model):
 class CronLog(models.Model):
     # 로그 기록 시간
     cron_date = models.DateTimeField(auto_now_add=True, blank=True)
+    # 크론탭 동작 설명
+    cronjob_comment = models.CharField(max_length=300, default='스토어홈-오늘의 딜 랜덤 숫자 동작 기록')
 
     def __str__(self):
         return str(self.cron_date)
 
     class Meta:
         ordering = ['-id']
+

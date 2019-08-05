@@ -141,3 +141,16 @@ class HotStoryNumber(models.Model):
     class Meta:
         ordering = ['id']
 
+
+class CronLog(models.Model):
+    # 로그 기록 시간
+    cron_date = models.DateTimeField(auto_now_add=True, blank=True)
+    # 크론탭 동작 설명
+    cronjob_comment = models.CharField(max_length=300, default='커뮤니티홈-오늘의 스토리 랜덤 숫자 동작 기록')
+
+    def __str__(self):
+        return str(self.cron_date)
+
+    class Meta:
+        ordering = ['-id']
+
