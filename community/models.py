@@ -107,7 +107,7 @@ class DetailContent(models.Model):
     housewarming = models.ForeignKey(Housewarming, on_delete=models.CASCADE, related_name='detail_contents')
     title = models.CharField(max_length=50, blank=True)
     image = models.TextField()
-    text = models.TextField()
+    text = models.TextField(blank=True)
 
 
 class HousewarmingComment(models.Model):

@@ -134,6 +134,7 @@ class HousewarmingDetailAPIView(generics.RetrieveAPIView):
             - work : 종류 - 작업
             - area : 종류 - 분야
             - period : 종류 - 기간
+            - budget : 종류 - 예산
             - family : 종류 - 가족형태
             - detail_part : 종류 - 세부공정
             - location : 종류 - 지역

@@ -127,6 +127,7 @@ FinalProject - House of Today API
     - fix: Update products // OrderItemResponseSerializer, OrderItemSerializer add the product_id
     - fix: Update products // OrderItem and Order class Meta ordering 'id'
     - fix: Update the products-Housewarming class- in 'budget' field.  
-
+    - fix: Add the Comment community-api_views.py-HousewarmingDetailAPIView-'budget' field. // community-models.py-DetailContent-'text' field -> add the (blank=Ture)
+     
 
 
