@@ -516,6 +516,7 @@ class OrderItemListAPIView(generics.ListAPIView):
             - user : 해당 유저 이름
             - brand_name : 해당 아이템의 상품 브랜드
             - product : 해당 아이템의 상품 이름
+            - product_id : 해당 아이템의 상품 고유 ID
             - deliver_fee : 배송비에 관한 내용
             - deliver : 배송에 관한 내용
             - product_option : 해당 아이템 상품의 옵션
@@ -648,6 +649,7 @@ class OrderListAPIView(generics.ListAPIView):
             - order_list : 주문한 상품의 리스트
                 - brand_name : 주문한 상품의 브랜드
                 - product : 주문한 상품의 이름
+                - product_id : 주문한 상품의 고유 ID
                 - product_option : 주문한 상품의 옵션
                 - quantity : 수량
                 - thumnail_image : 주문한 상품의 이미지 URL
