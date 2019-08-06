@@ -124,9 +124,9 @@ class OrderItemResponseSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         serializer_data = super().to_representation(instance)
-        thumnail_image = Product.objects.get(name=serializer_data['product']).product_thumnail.all()[0].image
+        thumnail_image = Product.objects.get(pk=serializer_data['product_id']).product_thumnail.all()[0].image
         quantity = serializer_data['quantity']
-        price = ProductOption.objects.get(name=serializer_data['product_option']).price
+        price = ProductOption.objects.get(pk=instance.product_option.id).price
         total_price = quantity * price
         serializer_data['thumnail_image'] = thumnail_image
         serializer_data['total_price'] = total_price
@@ -149,9 +149,9 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         serializer_data = super().to_representation(instance)
-        thumnail_image = Product.objects.get(name=serializer_data['product']).product_thumnail.all()[0].image
+        thumnail_image = Product.objects.get(pk=serializer_data['product_id']).product_thumnail.all()[0].image
         quantity = serializer_data['quantity']
-        price = ProductOption.objects.get(name=serializer_data['product_option']).price
+        price = ProductOption.objects.get(pk=instance.product_option.id).price
         total_price = quantity * price
         serializer_data['thumnail_image'] = thumnail_image
         serializer_data['total_price'] = total_price
@@ -174,7 +174,7 @@ class OrderItemUpdateSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         serializer_data = super().to_representation(instance)
         quantity = serializer_data['quantity']
-        price = ProductOption.objects.get(name=instance.product_option).price
+        price = ProductOption.objects.get(pk=instance.product_option.id).price
         total_price = quantity * price
         serializer_data['total_price'] = total_price
         return serializer_data

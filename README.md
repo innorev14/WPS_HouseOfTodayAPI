@@ -132,6 +132,4 @@ FinalProject - House of Today API
 
 - 19.08.06
     - fix: Update community // PhotoListAPIView add the product_image, product_id field
-     
-
-
+    - fix: Update products // OrderItemResponseSerializer, OrderItemSerializer to_representation()
