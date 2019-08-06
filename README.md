@@ -129,6 +129,9 @@ FinalProject - House of Today API
     - fix: Update the products-Housewarming class- in 'budget' field.  
     - fix: Add the Comment community-api_views.py-HousewarmingDetailAPIView-'budget' field. // community-models.py-DetailContent-'text' field -> add the (blank=Ture)
     - fix: Change(Add) the community // serializers.py-PhotoSerializer-'author_profile_image' field. and api_views.py add the comment PhotoListAPIView class.
+
+- 19.08.06
+    - fix: Update community // PhotoListAPIView add the product_image, product_id field
      
 
 
