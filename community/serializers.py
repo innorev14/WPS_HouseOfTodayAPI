@@ -21,7 +21,7 @@ class PhotoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Photo
-        fields = ['id', 'author', 'author_profile_image', 'image', 'product_image', 'product_id', 'hit_count', 'like_count',
+        fields = ['id', 'author', 'author_profile_image', 'author_profile_comment', 'image', 'product_image', 'product_id', 'hit_count', 'like_count',
                   'scrap_count', 'comment_count', 'text', 'comments']
 
     def get_comments(self, photo):
