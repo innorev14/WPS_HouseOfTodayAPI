@@ -21,6 +21,7 @@ class PhotoListAPIView(generics.ListAPIView):
             - id : 사진 고유의 ID
             - author : 작성자
             - author_profile_image : 사진 게시글 작성자의 프로필 이미지 URL
+            - author_profile_comment : 작성자의 프로필 소개 내용
             - image : 사진 이미지 URL
             - product_image : 사진 이미지와 관련된 상품 이미지 URL
             - product_id : 관련된 상품의 고유 ID
