@@ -21,7 +21,7 @@ class PhotoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Photo
-        fields = ['id', 'author', 'image', 'hit_count', 'like_count',
+        fields = ['id', 'author', 'author_profile_image', 'author_profile_comment', 'image', 'product_image', 'product_id', 'hit_count', 'like_count',
                   'scrap_count', 'comment_count', 'text', 'comments']
 
     def get_comments(self, photo):
@@ -35,6 +35,14 @@ class PhotoDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
         fields = '__all__'
+
+
+# 커뮤니티-홈의 오늘의 사진 부분에 대한 Serializer임.
+class TodayPictureSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Photo
+        fields = ['id', 'author', 'image', 'author_profile_image']
 
 
 # 집들이 탭 메인 serializer

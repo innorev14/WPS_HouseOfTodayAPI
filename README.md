@@ -117,3 +117,23 @@ FinalProject - House of Today API
     - feat: Update community // serializers.py-PhotoDetailSerializer, HousewarmingSerializer, HousewarmingDetailContentSerializer, HousewarmingCommentSerializer, HousewarmingDetailSerializer, community // api_views.py-HousewarmingAPIView, HousewarmingDetailAPIView, CommunityHomeAPIView, community // urls.py-path('housewarming/, housewarming/<int:pk>/, home/' Added API to community side.(including community home) && Update community // models.py-HotStoryNumber, admin.py-HotStoryNumberAdmin + products-cron.py-my_scheduled_job --> Community Home Page is also added to the cronjobs action.
     - fix: Update accounts // delete null attribution of email field
     - fix: Update products // OrderFromCartCreateAPIView,OrderDirectCreateAPIView - Add the replace()
+    - fix: Update products // OrderFromCartCreateAPIView,OrderDirectCreateAPIView - request.POST -> request.data
+    - fix: change the Markdown(url - 'swagger/v1'), change the community-api_views.py-CommunityHomeAPIView-'today_picture' API data. (url - community/home/) + Create the community-serializers.py-TodayPictureSerializer class.
+    - fix: test the django-crontab, added a method of use as an comment(settings.py-CRONJOBS)
+
+- 19.08.05
+    - fix: change the accounts-models.py-User-class Meta
+    - feat: It separated 'crontab.py' from each app and made it work. Also, the 'cronjob_comment' field was added to CronLog Class. 1) Add the community-models.py-CronLog, admin.py-CronLogAdmin, cron.py-community_todaystory 2) Change(Update) the products-models.py-CronLog, admin.py-CronLogAdmin, cron.py-products_todaydeal.
+    - fix: Update products // OrderItemResponseSerializer, OrderItemSerializer add the product_id
+    - fix: Update products // OrderItem and Order class Meta ordering 'id'
+    - fix: Update the products-Housewarming class- in 'budget' field.  
+    - fix: Add the Comment community-api_views.py-HousewarmingDetailAPIView-'budget' field. // community-models.py-DetailContent-'text' field -> add the (blank=Ture)
+    - fix: Change(Add) the community // serializers.py-PhotoSerializer-'author_profile_image' field. and api_views.py add the comment PhotoListAPIView class.
+
+- 19.08.06
+    - fix: Update community // PhotoListAPIView add the product_image, product_id field
+    - fix: Update products // OrderItemResponseSerializer, OrderItemSerializer to_representation()
+
+- 19.08.07
+    - fix: Update community // PhotoSerializer add the author_profile_comment field
+    - fix: Update accounts // Add custom permissions to UserUpdateView, UserDetailView, UserDeleteView

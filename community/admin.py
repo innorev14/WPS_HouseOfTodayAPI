@@ -18,11 +18,11 @@ class PhotoCommentAdmin(admin.ModelAdmin):
 
 class HousewarmingAdmin(admin.ModelAdmin):
     fields = ['title','created','author','author_profile','like_count','scrap_count','hit_count','cover_image',
-              'structure','floor_space','style','work','area','period','family','detail_part',
+              'structure','floor_space','style','work','area','period','budget','family','detail_part',
               'location','comment_count']
     list_display = ['id','title','created','author','author_profile','like_count','scrap_count',
                     'hit_count','cover_image','structure','floor_space','style','work','area','period',
-                    'family','detail_part','location','comment_count']
+                    'budget','family','detail_part','location','comment_count']
 
 
 class DetailContentAdmin(admin.ModelAdmin):
@@ -40,6 +40,11 @@ class HotStoryNumberAdmin(admin.ModelAdmin):
     list_display = ['id','product_rnd_number','updated']
 
 
+# CronTab 로그 기록 Admin
+class CronLogAdmin(admin.ModelAdmin):
+    list_display = ['id', 'cronjob_comment', 'cron_date']
+
+
 admin.site.register(Photo, PhotoAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(PhotoComment, PhotoCommentAdmin)
@@ -47,4 +52,5 @@ admin.site.register(Housewarming, HousewarmingAdmin)
 admin.site.register(DetailContent, DetailContentAdmin)
 admin.site.register(HousewarmingComment, HousewarmingCommentAdmin)
 admin.site.register(HotStoryNumber, HotStoryNumberAdmin)
+admin.site.register(CronLog, CronLogAdmin)
 

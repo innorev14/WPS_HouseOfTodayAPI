@@ -209,6 +209,12 @@ class OrderItem(models.Model):
     # 선택한 상품 옵션 수량
     quantity = models.PositiveIntegerField(default=1)
 
+    def __str__(self):
+        return self.product.name + "(" + self.product_option.name + ")"
+
+    class Meta:
+        ordering = ['id']
+
 
 class Order(models.Model):
     # 결제한 유저
@@ -217,13 +223,18 @@ class Order(models.Model):
     def __str__(self):
         return self.user.username + "(" + self.user.type + ")"
 
+    class Meta:
+        ordering = ['id']
+
 
 class CronLog(models.Model):
     # 로그 기록 시간
     cron_date = models.DateTimeField(auto_now_add=True, blank=True)
+    # 크론탭 동작 설명
+    cronjob_comment = models.CharField(max_length=300, default='스토어홈-오늘의 딜 랜덤 숫자 동작 기록')
 
     def __str__(self):
-        return str(self.cron_date)
+        return str(self.cron_date) + self.cronjob_comment
 
     class Meta:
         ordering = ['-id']

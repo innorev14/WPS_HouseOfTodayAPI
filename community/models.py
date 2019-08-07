@@ -89,6 +89,7 @@ class Housewarming(models.Model):
     work = models.CharField(max_length=50)
     area = models.CharField(max_length=50)
     period = models.CharField(max_length=50)
+    budget = models.CharField(max_length=100, default='-')
     family = models.CharField(max_length=50)
     detail_part = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
@@ -106,7 +107,7 @@ class DetailContent(models.Model):
     housewarming = models.ForeignKey(Housewarming, on_delete=models.CASCADE, related_name='detail_contents')
     title = models.CharField(max_length=50, blank=True)
     image = models.TextField()
-    text = models.TextField()
+    text = models.TextField(blank=True)
 
 
 class HousewarmingComment(models.Model):
@@ -140,4 +141,17 @@ class HotStoryNumber(models.Model):
 
     class Meta:
         ordering = ['id']
+
+
+class CronLog(models.Model):
+    # 로그 기록 시간
+    cron_date = models.DateTimeField(auto_now_add=True, blank=True)
+    # 크론탭 동작 설명
+    cronjob_comment = models.CharField(max_length=300, default='커뮤니티홈-오늘의 스토리 랜덤 숫자 동작 기록')
+
+    def __str__(self):
+        return str(self.cron_date)
+
+    class Meta:
+        ordering = ['-id']
 
