@@ -86,9 +86,9 @@ class HousewarmingAPIView(generics.ListAPIView):
             - total_post_count : 집들이 글 전체 개수
             - housewarming_posts : 커뮤니티/집들이 리스트
                 - id : 집들이 고유의 ID
-                - cover_image : 집들이 글 대표 이미지
+                - cover_image : 집들이 글 대표 이미지 URL
                 - title : 집들이 글 제목
-                - author_profile : 작성자 프로필 이미지
+                - author_profile_image : 작성자의 프로필 이미지 URL
                 - author : 작성자
                 - scrap_count : 스크랩 수
                 - hit_count : 조회 수
@@ -121,13 +121,14 @@ class HousewarmingDetailAPIView(generics.RetrieveAPIView):
             - housewarming_comments : 해당 게시글에 속하는 댓글 목록을 불러옵니다.
                 - id : 댓글 고유 ID
                 - author : 댓글 작성자
-                - author_profile_image : 댓글 작성자 프로필 사진
+                - author_profile_image : 댓글 작성자 프로필 사진 URL
                 - text : 댓글 내용
                 - created : 댓글 생성 시간
             - title : (해당 게시글) 제목
             - created : 생성일자
             - author : 작성자
-            - author_profile : 작성자 프로필 사진
+            - author_profile_image : 작성자 프로필 사진 URL
+            - author_profile_comment : 작성자의 프로필 소개 내용
             - like_count : 좋아요 수
             - scrap_count : 스크랩 수
             - hit_count : 조회 수

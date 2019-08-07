@@ -72,8 +72,10 @@ class Housewarming(models.Model):
     title = models.CharField(max_length=100)
     created = models.CharField(max_length=60)
     author = models.CharField(max_length=40)
-    # 작성자의 프로필 글 url
-    author_profile = models.TextField(blank=True)
+    # 작성자의 프로필 이미지
+    author_profile_image = models.TextField(blank=True)
+    # 작성자의 프로필 글
+    author_profile_comment = models.TextField(blank=True)
     # 좋아요 수
     like_count = models.PositiveIntegerField(default=0)
     # 스크랩 수
