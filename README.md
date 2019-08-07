@@ -136,3 +136,4 @@ FinalProject - House of Today API
 
 - 19.08.07
     - fix: Update community // PhotoSerializer add the author_profile_comment field
+    - fix: Update accounts // Add custom permissions to UserUpdateView, UserDetailView, UserDeleteView

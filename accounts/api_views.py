@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from rest_framework.schemas import ManualSchema
 from rest_framework.views import APIView
 
+from .permissions import IsUserOnly
 
 class UserListView(generics.ListAPIView):
     """
@@ -82,6 +83,7 @@ class UserUpdateView(generics.UpdateAPIView):
     """
     queryset = get_user_model().objects.all()
     serializer_class = UserModifySerializer
+    permission_classes = [IsUserOnly,]
 
 class UserDetailView(generics.RetrieveAPIView):
     """
@@ -102,6 +104,7 @@ class UserDetailView(generics.RetrieveAPIView):
     """
     queryset = get_user_model().objects.all()
     serializer_class = UserDetailSerializer
+    permission_classes = [IsUserOnly,]
 
 class UserDeleteView(generics.DestroyAPIView):
     """
@@ -114,6 +117,7 @@ class UserDeleteView(generics.DestroyAPIView):
         회원 고유의 ID를 입력하면 삭제됩니다.
     """
     queryset = get_user_model().objects.all()
+    permission_classes = [IsUserOnly,]
 
 class UsernameObtainAuthToken(ObtainAuthToken):
     """
