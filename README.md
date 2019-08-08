@@ -139,3 +139,12 @@ FinalProject - House of Today API
     - fix: Update accounts // Add custom permissions to UserUpdateView, UserDetailView, UserDeleteView
     - fix: Update community // Housewarming model - Change name(author_profile -> author_profile_image)
     - feat: Update community // Housewarming model - Add the author_profile_comment
+    
+- 19.08.08
+    - fix: Change the products // cron.py-products_todaydeal 'i' 0~3 --> 1~4, 'num' 0~179 --> 1~180 change + Random random numbers were modified to prevent overlap.
+    - fix: Change the community // cron.py-community_todaystory 'j' 0~3, 5 --> 1~4, 5, 'num_2nd' 0~17 --> 1~18 change + Random random numbers were modified to prevent overlap.
+
+
+
+
+
