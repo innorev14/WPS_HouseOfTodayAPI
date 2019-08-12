@@ -63,7 +63,7 @@ class OrderItemAdmin(admin.ModelAdmin):
 # 주문 내역 Admin
 class OrderAdmin(admin.ModelAdmin):
     fields = ['user']
-    list_display = ['id', 'user']
+    list_display = ['id', 'user','created']
 
 
 # CronTab 로그 기록 Admin
