@@ -80,6 +80,7 @@ class UserUpdateView(generics.UpdateAPIView):
             - gender : 성별(1 = 남자, 2 = 여자)
             - birthday : "YYYY-MM-DD"
             - message : "변경할 한줄 소개 내용"
+            - profile : "변경할 유저의 프로필 이미지(파일 업로드이므로 json으로 요청 불가)"
     """
     queryset = get_user_model().objects.all()
     serializer_class = UserModifySerializer

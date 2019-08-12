@@ -179,6 +179,7 @@ class OrderItemUpdateSerializer(serializers.ModelSerializer):
         serializer_data['total_price'] = total_price
         return serializer_data
 
+
 # Order Model Serializer
 class OrderSerializer(serializers.ModelSerializer):
     user = serializers.CharField(source='user.username')

@@ -88,6 +88,8 @@ class ProductDetailView(generics.RetrieveAPIView):
         상품 리스트에서 특정 id를 가지는 데이터를 불러옵니다.
 
         ---
+        review에 helpful의 경우, 해당 리뷰에 '도움이 돼요' 기능을 사용한 유저의 고유 ID가 리스트로 들어있습니다.
+
         # 내용
             - id : 상품의 고유 ID
 
@@ -114,9 +116,10 @@ class ProductDetailView(generics.RetrieveAPIView):
                 - image : 리뷰 이미지
                 - comment : 리뷰 내용
                 - created : 리뷰 생성 일자
-                - user : 리뷰 작성자
+                - helpful_count : 리뷰 '도움이 돼요'의 수
+                - user : 리뷰 작성자의 고유 ID
                 - product : 리뷰가 속한 상품의 고유 ID
-                - helpful : 리뷰 '도움이 돼요' - 아직 구현되지 않음
+                - helpful : 리뷰 '도움이 돼요'를 클릭한 유저 고유 ID의 리스트
 
             - pdqna : 상품 QnA
                 - id : QnA의 고유 ID
@@ -167,6 +170,48 @@ class ProductDetailView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductDetailSerializer
     permission_classes = (AllowAny,)
+
+
+# 스토어/특정 브랜드의 상품 리스트 관련 뷰
+class ProductBrandView(APIView):
+    """
+        특정 브랜드의 상품 리스트를 가져옵니다.
+
+        ---
+        다음과 같이 query string으로 요청할 수 있습니다.
+        Postman으로 요청 시, Params에 써주셔도 됩니다.
+        Params의 이름은 query 입니다.
+
+        # 내용
+            - http://api.ohome.co.kr/products/product/brand/?query=브랜드이름
+
+        다음과 같은 내용으로 리턴됩니다.
+
+        # 내용
+            - id : 상품의 고유 ID
+            - brand_name : 상품의 브랜드 이름
+            - name : 상품 이름
+            - price : 상품 가격
+            - review_count : 리뷰 수
+            - star_avg : 리뷰 평점
+            - thumnail_images : 상품 썸네일 이미지
+                - id : 썸네일 이미지의 고유 ID
+                - image : 썸네일 이미지 URL
+                - product : 썸네일 이미지가 속한 상품의 고유 ID
+    """
+    permission_classes = (AllowAny,)
+
+    def get(self, request, *args, **kwargs):
+        # Product 모델의 QuerySet을 ProductSerializer 사용해 직렬화
+        # many=True 옵션으로 multiple objects 대응
+        # serializer의 data를 Response 객체 생성의 인수로 사용
+        # 만들어진 Respnese 객체를 리턴
+        # bn = brand_name
+        bn = request.query_params.get('query')
+        product = Product.objects.filter(brand_name=bn)
+        serializer = ProductSerializer(product, many=True)
+        response = Response(serializer.data)
+        return response
 
 
 # 스토어/스토어홈 관련 뷰
@@ -459,6 +504,52 @@ class ReviewUpdateAPIView(generics.UpdateAPIView):
     """
     queryset = Review.objects.all()
     serializer_class = ReviewUpdateSerializer
+
+
+# 스토어/상품 리뷰 '도움의 돼요' 관련 뷰
+class ReviewHelpfulAPIView(APIView):
+    """
+        상품 리뷰의 '도움이 돼요' 기능을 요청합니다.
+
+        ---
+        # 권한
+            - 토큰 인증을 해야 합니다.
+
+        로그인하지 않았다면 사용할 수 없는 기능입니다.
+        다음과 같은 내용으로 요청할 수 있습니다.
+
+        # 내용
+            - rv_id : "요청할 리뷰의 고유 ID"
+
+        다음과 같은 내용으로 리턴됩니다.
+        helpful_checked의 경우, 이미 '도움이 돼요'에 해당 유저 ID가 없다면 true를, 해당 유저 ID가 있다면 false를 리턴합니다.
+        true를 리턴한다면 '도움됨'을, false를 리턴한다면 '도움이 돼요'를 표시하시면 됩니다.
+
+
+        # 내용
+            - helpful_checked : true 또는 false
+            - helpful_count : 해당 리뷰의 '도움이 돼요' 총 개수
+    """
+
+    def post(self, request, *args, **kwargs):
+        # 요청된 리뷰의 id로 해당 review의 객체를 얻음
+        rv_id = request.data['rv_id'].replace('"', '')
+        review = Review.objects.get(pk=int(rv_id))
+        # 현재 로그인한 유저
+        user = request.user
+
+        # 해당 유저가 없다면
+        if user not in review.helpful.all():
+            # 유저 추가
+            review.helpful.add(user)
+            review.save()
+            return Response({'helpful_checked': True, 'helpful_count': review.helpful_count}, status=status.HTTP_200_OK)
+        # 해당 유저가 이미 있다면
+        else:
+            # 유저 삭제
+            review.helpful.remove(user)
+            review.save()
+            return Response({'helpful_checked': False, 'helpful_count': review.helpful_count}, status=status.HTTP_200_OK)
 
 
 # 스토어/상품 문의 생성 관련 뷰

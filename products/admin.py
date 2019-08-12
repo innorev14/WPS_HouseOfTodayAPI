@@ -38,7 +38,7 @@ class ProductOptionAdmin(admin.ModelAdmin):
 # Product Review 관련 Admin
 class ReviewAdmin(admin.ModelAdmin):
     fields = ['user', 'product', 'star_score', 'image', 'comment']
-    list_display = ['id', 'user', 'product', 'star_score', 'image', 'comment', 'created']
+    list_display = ['id', 'user', 'product', 'star_score', 'image', 'comment', 'created', 'helpful_count']
 
 
 # Product QnA Admin
