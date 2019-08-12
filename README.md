@@ -184,5 +184,9 @@ FinalProject - House of Today API
     - feat: products-models-Order-'created' // add the field 'created'
     - fix: products-admin-OrderAdmin-'created' // add the list_display field 'created'
     - fix: remove the README_modify.md
+    - feat: products-models-Review-'helpful' // add the field 'helpful'
+    - feat: products-models-Review-'helpful_count' // add the field 'helpful_count'
+    - feat: products-admin-ReviewAdmin-'helpful_count' // add the list_display field 'helpful_count'
+    - feat: products-api_views- ReviewHelpfulAPIView // Add the APIView
 
 
