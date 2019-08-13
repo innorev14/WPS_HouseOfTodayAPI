@@ -188,5 +188,8 @@ FinalProject - House of Today API
     - feat: products-models-Review-'helpful_count' // add the field 'helpful_count'
     - feat: products-admin-ReviewAdmin-'helpful_count' // add the list_display field 'helpful_count'
     - feat: products-api_views- ReviewHelpfulAPIView // Add the APIView
+    
+- 19.08.13
+    - feat: products-api_views- ReviewHelpfulAPIView // Add the 'review_id'
 
 
