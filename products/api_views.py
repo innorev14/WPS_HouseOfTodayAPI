@@ -527,6 +527,7 @@ class ReviewHelpfulAPIView(APIView):
 
 
         # 내용
+            - review_id : 해당 리뷰의 고유 ID
             - helpful_checked : true 또는 false
             - helpful_count : 해당 리뷰의 '도움이 돼요' 총 개수
     """
@@ -543,13 +544,20 @@ class ReviewHelpfulAPIView(APIView):
             # 유저 추가
             review.helpful.add(user)
             review.save()
-            return Response({'helpful_checked': True, 'helpful_count': review.helpful_count}, status=status.HTTP_200_OK)
+            # 프론트 요청으로 리뷰의 id를 받을 수 있도록 review_id 추가
+            return Response({'review_id': review.id,
+                             'helpful_checked': True,
+                             'helpful_count': review.helpful_count},
+                            status=status.HTTP_200_OK)
         # 해당 유저가 이미 있다면
         else:
             # 유저 삭제
             review.helpful.remove(user)
             review.save()
-            return Response({'helpful_checked': False, 'helpful_count': review.helpful_count}, status=status.HTTP_200_OK)
+            return Response({'review_id': review.id,
+                             'helpful_checked': False,
+                             'helpful_count': review.helpful_count},
+                            status=status.HTTP_200_OK)
 
 
 # 스토어/상품 문의 생성 관련 뷰
