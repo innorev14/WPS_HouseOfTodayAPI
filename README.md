@@ -192,4 +192,6 @@ FinalProject - House of Today API
 - 19.08.13
     - feat: products-api_views- ReviewHelpfulAPIView // Add the 'review_id'
 
+- 19.08.16
+    - fix: products-models-Review // add the function helpful_count()
 

@@ -140,15 +140,16 @@ class Review(models.Model):
     created = models.DateField(auto_now_add=True)
     # 도움이 돼요 기능
     helpful = models.ManyToManyField(User, related_name='helpful_review', blank=True)
-    # 도움이 돼요 수
-    helpful_count = models.PositiveIntegerField(default=0)
+
+    @property
+    def helpful_count(self):
+        return self.helpful.count()
 
     def __str__(self):
         # 객체의 이름 - 질문 작성자
         return self.user.username
 
     def save(self, *args, **kwargs):
-        self.helpful_count = self.helpful.count()
         super(Review, self).save(*args, **kwargs)
         product = self.product
         product.review_count = product.reviews.count()
