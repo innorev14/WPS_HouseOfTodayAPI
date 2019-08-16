@@ -29,7 +29,7 @@ class ProductOptionSerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = '__all__'
+        fields = ['id', 'star_score', 'image', 'comment', 'created', 'user', 'product', 'helpful', 'helpful_count']
 
 
 # PDQnA Model Serializer
