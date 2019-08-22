@@ -2,6 +2,10 @@
 
 FinalProject - House of Today API
 
+## API Document
+- http://api.ohome.co.kr/swagger/v1
+- http://api.ohome.co.kr/docs/v1
+
 ## Team members
 - 천정환
 - 김병욱
