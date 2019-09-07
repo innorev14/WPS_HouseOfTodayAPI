@@ -29,7 +29,7 @@ class ProductOptionSerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = '__all__'
+        fields = ['id', 'star_score', 'image', 'comment', 'created', 'user', 'product', 'helpful', 'helpful_count']
 
 
 # PDQnA Model Serializer
@@ -178,6 +178,7 @@ class OrderItemUpdateSerializer(serializers.ModelSerializer):
         total_price = quantity * price
         serializer_data['total_price'] = total_price
         return serializer_data
+
 
 # Order Model Serializer
 class OrderSerializer(serializers.ModelSerializer):

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'products',
     'community',
     'django_crontab',
+    'payments'
 ]
 
 MIDDLEWARE = [

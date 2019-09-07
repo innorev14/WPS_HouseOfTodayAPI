@@ -38,7 +38,7 @@ class ProductOptionAdmin(admin.ModelAdmin):
 # Product Review 관련 Admin
 class ReviewAdmin(admin.ModelAdmin):
     fields = ['user', 'product', 'star_score', 'image', 'comment']
-    list_display = ['id', 'user', 'product', 'star_score', 'image', 'comment', 'created']
+    list_display = ['id', 'user', 'product', 'star_score', 'image', 'comment', 'created', 'helpful_count']
 
 
 # Product QnA Admin
@@ -63,7 +63,7 @@ class OrderItemAdmin(admin.ModelAdmin):
 # 주문 내역 Admin
 class OrderAdmin(admin.ModelAdmin):
     fields = ['user']
-    list_display = ['id', 'user']
+    list_display = ['id', 'user','created']
 
 
 # CronTab 로그 기록 Admin

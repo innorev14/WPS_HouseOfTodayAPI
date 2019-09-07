@@ -138,6 +138,12 @@ class Review(models.Model):
     comment = models.TextField()
     # 생성 일자
     created = models.DateField(auto_now_add=True)
+    # 도움이 돼요 기능
+    helpful = models.ManyToManyField(User, related_name='helpful_review', blank=True)
+
+    @property
+    def helpful_count(self):
+        return self.helpful.count()
 
     def __str__(self):
         # 객체의 이름 - 질문 작성자
@@ -149,6 +155,7 @@ class Review(models.Model):
         product.review_count = product.reviews.count()
         product.star_avg = product.reviews.aggregate(Avg('star_score'))['star_score__avg']
         product.save()
+
 
     class Meta:
         ordering = ['id']
@@ -219,7 +226,7 @@ class OrderItem(models.Model):
 class Order(models.Model):
     # 결제한 유저
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
-
+    created = models.DateField(auto_now_add=True)
     def __str__(self):
         return self.user.username + "(" + self.user.type + ")"
 
